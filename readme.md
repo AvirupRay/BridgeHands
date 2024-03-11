@@ -7,5 +7,5 @@ $ python -m venv env-name
 ## Activating the environment
 $ env-name\Scripts\activate
 
-## Installing the requred libraries
+## Installing the required libraries
 $ pip install pandas numpy opencv-contrib-python tensorflow cvzone mediapipe
