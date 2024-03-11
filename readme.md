@@ -8,4 +8,4 @@ $ python -m venv env-name
 $ env-name\Scripts\activate
 
 ## Installing the requred libraries
-$ pip install pandas numpy opencv-contrib-python tensorflow 
+$ pip install pandas numpy opencv-contrib-python tensorflow cvzone mediapipe
