@@ -1,7 +1,7 @@
 import cv2 as cv
 from cvzone.HandTrackingModule import HandDetector
 
-capture = cv.VideoCapture(1)
+capture = cv.VideoCapture(0)
 detector = HandDetector(maxHands = 1)
 while True:
     isTrue, frame = capture.read()
