@@ -6,7 +6,7 @@ import cv2 as cv
 # cv.waitKey(0)
 
 # Reading Video
-capture = cv.VideoCapture(1)
+capture = cv.VideoCapture(0)
 
 while True:
     isTrue, frame = capture.read()
