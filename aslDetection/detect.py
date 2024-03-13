@@ -12,7 +12,7 @@ detector = HandDetector(maxHands = 1)
 offset = 20
 img_size = 400
 
-folder = 'Data/A'
+folder = 'Data/A' # Replace A or B or C to save to required folder.
 counter = 0
 
 while True:
