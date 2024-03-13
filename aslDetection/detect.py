@@ -1,14 +1,19 @@
 import cv2 as cv
 import numpy as np
+import math
+import time
 from cvzone.HandTrackingModule import HandDetector
 from termcolor import colored
 
 
-capture = cv.VideoCapture(0)
+capture = cv.VideoCapture(1)
 detector = HandDetector(maxHands = 1)
 
 offset = 20
 img_size = 400
+
+folder = 'Data/A'
+counter = 0
 
 while True:
     isTrue, frame = capture.read()
@@ -20,14 +25,36 @@ while True:
         cropped_img = img[y - offset: y + h + offset, x - offset: x + w + offset]
 
         cropped_img_shape = cropped_img.shape
-        print(colored(f"Height: {cropped_img_shape[0]}  Width: {cropped_img_shape[1]}", "blue"))
+        print(colored(f"Cropped Height: {cropped_img_shape[0]}  Width: {cropped_img_shape[1]}", "green"))
 
-        white_img[0:cropped_img_shape[0], 0:cropped_img_shape[1]] = cropped_img
+        aspect_ratio = h / w
+        if aspect_ratio > 1:
+            k = img_size / h
+            nwidth = math.ceil(k * w)
+            resized_img = cv.resize(cropped_img, (nwidth, img_size))
+            resized_img_shape = resized_img.shape
+            print(colored(f"Resized - Height: {resized_img_shape[0]}  Width: {resized_img_shape[1]}", "blue"))
+            width_gap = math.ceil((img_size - nwidth) / 2)
+            white_img[0:resized_img_shape[0], width_gap:resized_img_shape[1] + width_gap] = resized_img
+        else:
+            k = img_size / w
+            nheight = math.ceil(k * h)
+            resized_img = cv.resize(cropped_img, (img_size, nheight))
+            resized_img_shape = resized_img.shape
+            print(colored(f"Resized - Height: {resized_img_shape[0]}  Width: {resized_img_shape[1]}", "blue"))
+            height_gap = math.ceil((img_size - nheight) / 2)
+            white_img[height_gap:resized_img_shape[0] + height_gap, 0:resized_img_shape[1]] = resized_img
 
         cv.imshow("Hand Image", cropped_img)
         cv.imshow("White Hand Image", white_img)
     
     cv.imshow("Hand Detection", img)
+
+    key = cv.waitKey(1)
+    if key == ord('c'):
+        counter += 1
+        cv.imwrite(f'{folder}/Image_{time.time()}.jpg', white_img)
+        print(colored(counter, "grey"))
     
     if cv.waitKey(20) & 0xFF == ord('q'):
         break;
