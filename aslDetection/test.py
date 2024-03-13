@@ -7,7 +7,7 @@ from cvzone.ClassificationModule import Classifier
 from termcolor import colored
 
 
-capture = cv.VideoCapture(1)
+capture = cv.VideoCapture(0)
 detector = HandDetector(maxHands = 1)
 classifier = Classifier(modelPath = 'model/keras_model.h5', labelsPath = 'model/labels.txt')
 
@@ -16,7 +16,7 @@ img_size = 400
 
 folder = 'data/A' # Replace A or B or C to save to required folder.
 counter = 0
-labels = ["A", "B", "C"]
+labels = ["A", "B", "C","D","E","F","G","H","I","K","L","M","N","O","P","S","U","V","W","X","Y"]
 
 while True:
     isTrue, frame = capture.read()
