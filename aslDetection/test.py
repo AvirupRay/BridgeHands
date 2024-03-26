@@ -16,8 +16,8 @@ img_size = 400
 
 folder = 'data/A' # Replace A or B or C to save to required folder.
 counter = 0
-labels = ["A", "B", "C","D","E","F","G","H","I","K","L","M","N","O","P","S","U","V","W","X","Y"]
-
+labels = ["A", "B", "C","D","E","F"]
+# "G","I","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","H"
 while True:
     isTrue, frame = capture.read()
     output_img = frame.copy()
@@ -50,14 +50,17 @@ while True:
                 resized_img_shape = resized_img.shape
                 # print(colored(f"Resized - Height: {resized_img_shape[0]}  Width: {resized_img_shape[1]}", "blue"))
                 height_gap = math.ceil((img_size - nheight) / 2)
+                # white_img[height_gap:resized_img_shape[0] + height_gap, :] = resized_img
                 white_img[height_gap:resized_img_shape[0] + height_gap, :] = resized_img
                 predct, index = classifier.getPrediction(white_img)
                 # print(predct, index)
 
-            cv.putText(output_img, labels[index], (x, y - 20), cv.FONT_HERSHEY_COMPLEX, 2, (255, 0, 255), 2)
+            cv.rectangle( output_img , ( x - offset , y - offset - 50 ) , ( x - offset + 90 , y - offset - 50 + 50 ) , ( 255 , 0 , 255 ) , cv.FILLED )
+            cv.putText(output_img, labels[index], (x, y - 26), cv.FONT_HERSHEY_COMPLEX, 2, (255, 255, 255), 2) 
+            cv.rectangle(output_img,  (x - offset, y - offset) , (x + w + offset , y + h + offset) , ( 255 , 0 , 255 ) , 4 )
 
             # cv.imshow("Hand Image", cropped_img)
-            # cv.imshow("White Hand Image", white_img)
+            cv.imshow("White Hand Image", white_img)
 
 
     # cv.imshow("Hand Detection", img)
