@@ -7,7 +7,7 @@ from cvzone.ClassificationModule import Classifier
 from termcolor import colored
 
 
-capture = cv.VideoCapture(0)
+capture = cv.VideoCapture(1)
 detector = HandDetector(maxHands = 1)
 classifier = Classifier(modelPath = 'model/keras_model.h5', labelsPath = 'model/labels.txt')
 
