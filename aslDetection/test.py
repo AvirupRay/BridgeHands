@@ -7,7 +7,7 @@ from cvzone.ClassificationModule import Classifier
 from termcolor import colored
 
 
-capture = cv.VideoCapture(1)
+capture = cv.VideoCapture(0)
 detector = HandDetector(maxHands = 1)
 classifier = Classifier(modelPath = 'model/keras_model.h5', labelsPath = 'model/labels.txt')
 
@@ -16,8 +16,8 @@ img_size = 400
 
 folder = 'data/A' # Replace A or B or C to save to required folder.
 counter = 0
-labels = ["A", "B", "C","D","E","F"]
-# "G","I","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","H"
+labels = ["A","B","C","D","E","F","G","H","I","K","L","M","N","O","R","S","U","V","W","Y","SPACE"]
+# ,"G","H","I","K","L","M","N","O","Q","R","S","T","U","V","W","X","Y","SPACE"
 while True:
     isTrue, frame = capture.read()
     output_img = frame.copy()
@@ -60,7 +60,7 @@ while True:
             cv.rectangle(output_img,  (x - offset, y - offset) , (x + w + offset , y + h + offset) , ( 255 , 0 , 255 ) , 4 )
 
             # cv.imshow("Hand Image", cropped_img)
-            cv.imshow("White Hand Image", white_img)
+            # cv.imshow("White Hand Image", white_img)
 
 
     # cv.imshow("Hand Detection", img)

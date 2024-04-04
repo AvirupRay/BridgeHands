@@ -6,13 +6,13 @@ from cvzone.HandTrackingModule import HandDetector
 from termcolor import colored
 
 
-capture = cv.VideoCapture(1)
+capture = cv.VideoCapture(0)
 detector = HandDetector(maxHands = 1)
 
 offset = 20
 img_size = 400
 
-folder = 'Data/F' # Replace A or B or C to save to required folder.
+folder = 'Data/T' # Replace A or B or C to save to required folder.
 counter = 0
 
 while True:
